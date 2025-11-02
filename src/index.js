@@ -1,6 +1,7 @@
 import { createInterface } from 'readline/promises';
 import { showWelcomeMessage, showFarewellMessage } from './utils/user.js';
 import { printCurrentDirectory, initHomeDir } from './utils/directory-path.js';
+import { handleInput } from './commands/input-handler.js';
 
 const init = () => {
   const readline = createInterface({
@@ -21,7 +22,7 @@ const init = () => {
 
   readline.on('close', showFarewellMessage);
   readline.on('line', async (input) => {
-    readlineClose();
+    await handleInput(input, readlineClose);
     readline.prompt();
   });
 };
