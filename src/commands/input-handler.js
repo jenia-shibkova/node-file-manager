@@ -11,6 +11,7 @@ import { cp } from './file-system/cp.js';
 import { mv } from './file-system/mv.js';
 import { rm } from './file-system/rm.js';
 import { osCommand } from './os/os.js';
+import { calculateHash } from './hash/hash.js';
 
 import { printCurrentDirectory } from '../utils/directory-path.js';
 import { COMMANDS } from '../utils/constants.js';
@@ -61,6 +62,9 @@ export const handleInput = async (line, readlineClose) => {
         break;
       case COMMANDS.OS.name:
         osCommand(args);
+        break;
+      case COMMANDS.HASH.name:
+        await calculateHash(args);
         break;
       default:
         console.log(
