@@ -3,40 +3,17 @@ import { EOL } from 'os';
 import { ls } from './navigation/ls.js';
 import { cd } from './navigation/cd.js';
 import { up } from './navigation/up.js';
+import { cat } from './file-system/cat.js';
+import { add } from './file-system/add.js';
+import { mkdirCmd } from './file-system/mkdir.js';
+import { rn } from './file-system/rn.js';
+import { cp } from './file-system/cp.js';
+import { mv } from './file-system/mv.js';
+import { rm } from './file-system/rm.js';
+
 import { printCurrentDirectory } from '../utils/directory-path.js';
-
-export const COMMANDS = {
-  EXIT: { name: '.exit', argCount: 0 },
-  CD: { name: 'cd', argCount: 1 },
-  UP: { name: 'up', argCount: 0 },
-  LS: { name: 'ls', argCount: 0 },
-  CAT: { name: 'cat', argCount: 1 },
-  ADD: { name: 'add', argCount: 1 },
-  RN: { name: 'rn', argCount: 2 },
-  CP: { name: 'cp', argCount: 2 },
-  MV: { name: 'mv', argCount: 2 },
-  RM: { name: 'rm', argCount: 1 },
-  OS: { name: 'os', argCount: 1 },
-  HASH: { name: 'hash', argCount: 1 },
-  COMPRESS: { name: 'compress', argCount: 2 },
-  DECOMPRESS: { name: 'decompress', argCount: 2 },
-};
-
-export const checkArgCount = (inputCommandName, args) => {
-  const foundCommand = Object.entries(COMMANDS).find(
-    ([key, { name }]) => name === inputCommandName
-  );
-
-  if (foundCommand) {
-    const [key, { argCount: expectedArgCount }] = foundCommand;
-
-    if (args.length !== expectedArgCount) {
-      throw new Error(
-        `Invalid input.${EOL}Command "${inputCommandName}" requires ${expectedArgCount} argument(s).`
-      );
-    }
-  }
-};
+import { COMMANDS } from '../utils/constants.js';
+import { checkArgCount } from '../utils/commands.js';
 
 export const handleInput = async (line, readlineClose) => {
   try {
@@ -59,6 +36,27 @@ export const handleInput = async (line, readlineClose) => {
         break;
       case COMMANDS.LS.name:
         await ls();
+        break;
+      case COMMANDS.CAT.name:
+        await cat(args);
+        break;
+      case COMMANDS.ADD.name:
+        await add(args);
+        break;
+      case COMMANDS.MKDIR.name:
+        await mkdirCmd(args);
+        break;
+      case COMMANDS.RN.name:
+        await rn(args);
+        break;
+      case COMMANDS.CP.name:
+        await cp(args);
+        break;
+      case COMMANDS.MV.name:
+        await mv(args);
+        break;
+      case COMMANDS.RM.name:
+        await rm(args);
         break;
       default:
         console.log(

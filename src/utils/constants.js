@@ -1,0 +1,17 @@
+export const COMMANDS = {
+  EXIT: { name: '.exit', argCount: 0 },
+  CD: { name: 'cd', argCount: 1 },
+  UP: { name: 'up', argCount: 0 },
+  LS: { name: 'ls', argCount: 0 },
+  CAT: { name: 'cat', argCount: 1 },
+  ADD: { name: 'add', argCount: 1 },
+  MKDIR: { name: 'mkdir', argCount: 1 },
+  RN: { name: 'rn', argCount: 2 },
+  CP: { name: 'cp', argCount: 2 },
+  MV: { name: 'mv', argCount: 2 },
+  RM: { name: 'rm', argCount: 1 },
+  OS: { name: 'os', argCount: 1 },
+  HASH: { name: 'hash', argCount: 1 },
+  COMPRESS: { name: 'compress', argCount: 2 },
+  DECOMPRESS: { name: 'decompress', argCount: 2 },
+};
