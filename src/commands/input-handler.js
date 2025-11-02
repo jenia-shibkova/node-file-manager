@@ -12,6 +12,7 @@ import { mv } from './file-system/mv.js';
 import { rm } from './file-system/rm.js';
 import { osCommand } from './os/os.js';
 import { calculateHash } from './hash/hash.js';
+import { brotliHandler } from './archive/brotliAlg.js';
 
 import { printCurrentDirectory } from '../utils/directory-path.js';
 import { COMMANDS } from '../utils/constants.js';
@@ -65,6 +66,12 @@ export const handleInput = async (line, readlineClose) => {
         break;
       case COMMANDS.HASH.name:
         await calculateHash(args);
+        break;
+      case COMMANDS.COMPRESS.name:
+        await brotliHandler(args, 'compress');
+        break;
+      case COMMANDS.DECOMPRESS.name:
+        await brotliHandler(args, 'decompress');
         break;
       default:
         console.log(
