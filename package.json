@@ -1,0 +1,20 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "Your task is to implement File Manager using Node.js APIs.",
+  "homepage": "https://github.com/jenia-shibkova/node-file-manager#readme",
+  "bugs": {
+    "url": "https://github.com/jenia-shibkova/node-file-manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jenia-shibkova/node-file-manager.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
