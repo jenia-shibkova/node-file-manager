@@ -1,5 +1,6 @@
 import { EOL, homedir, userInfo } from 'os';
 import { cpus } from 'os';
+import { getColoredText } from '../../utils/text-format.js';
 
 const getCpuInfo = () => {
   const cpuData = cpus().map((cpu) => ({
@@ -15,24 +16,24 @@ export const osCommand = (args) => {
   switch (args[0]) {
     case '--EOL':
       console.log(
-        `Default system End-Of-Line: \x1b${'[32m'}${JSON.stringify(
-          EOL
-        )}\x1b${'[0m'}`
+        'Default system End-Of-Line:',
+        getColoredText('MAGENTA', JSON.stringify(EOL))
       );
       break;
     case '--cpus':
       getCpuInfo();
       break;
     case '--homedir':
-      console.log(`Home directory: \x1b${'[32m'}${homedir()}\x1b${'[0m'}`);
+      console.log('Home directory:', getColoredText('MAGENTA', homedir()));
       break;
     case '--username':
       console.log(
-        `System user name: \x1b${'[32m'}${userInfo().username}\x1b${'[0m'}`
+        'System user name:',
+        getColoredText('MAGENTA', userInfo().username)
       );
       break;
     case '--architecture':
-      console.log(`CPU architecture: \x1b${'[32m'}${process.arch}\x1b${'[0m'}`);
+      console.log('CPU architecture:', getColoredText('MAGENTA', process.arch));
       break;
     default:
       throw new Error(

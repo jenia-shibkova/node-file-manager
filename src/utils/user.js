@@ -1,5 +1,7 @@
 import { EOL } from 'os';
 
+import { getColoredText } from './text-format.js';
+
 const USERNAME_ARG = 'username';
 const DEFAULT_USERNAME = 'Anonymous';
 
@@ -18,16 +20,25 @@ const getUserName = () => {
 
 export const showWelcomeMessage = () => {
   const userName = getUserName();
+  const coloredUserName = getColoredText('BLUE', userName);
 
   if (userName === DEFAULT_USERNAME) {
-    console.log('No username specified. Using default username: %s.');
+    console.log(
+      'No username specified. Using default username: %s.',
+      coloredUserName
+    );
   }
 
-  console.log('Welcome to the File Manager, %s!', userName);
+  console.log('Welcome to the File Manager, %s!', coloredUserName);
 };
 
 export const showFarewellMessage = () => {
   const userName = getUserName();
 
-  console.log(`${EOL}Thank you for using File Manager, ${userName}, goodbye!`);
+  console.log(
+    `${EOL}Thank you for using File Manager, ${getColoredText(
+      'BLUE',
+      userName
+    )}, goodbye!`
+  );
 };
