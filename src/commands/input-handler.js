@@ -10,6 +10,7 @@ import { rn } from './file-system/rn.js';
 import { cp } from './file-system/cp.js';
 import { mv } from './file-system/mv.js';
 import { rm } from './file-system/rm.js';
+import { osCommand } from './os/os.js';
 
 import { printCurrentDirectory } from '../utils/directory-path.js';
 import { COMMANDS } from '../utils/constants.js';
@@ -57,6 +58,9 @@ export const handleInput = async (line, readlineClose) => {
         break;
       case COMMANDS.RM.name:
         await rm(args);
+        break;
+      case COMMANDS.OS.name:
+        osCommand(args);
         break;
       default:
         console.log(
